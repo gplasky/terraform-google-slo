@@ -35,32 +35,8 @@ locals {
   slo_config_map = { for config in local.slo_configs : config.slo_id => config }
 }
 
-module "slo-cass-latency5ms-window" {
+module "slo-hipstershop-grpc-availability" {
   source = "../../../modules/slo-native"
-  config = local.slo_config_map["cass-latency5ms-window"]
+  config = local.slo_config_map["hipstershop-grpc-availability"]
 }
 
-module "slo-gae-latency500ms" {
-  source = "../../../modules/slo-native"
-  config = local.slo_config_map["gae-latency500ms"]
-}
-
-module "slo-gcp-latency400ms" {
-  source = "../../../modules/slo-native"
-  config = local.slo_config_map["gcp-latency400ms"]
-}
-
-module "slo-gcp-latency500ms-window" {
-  source = "../../../modules/slo-native"
-  config = local.slo_config_map["gcp-latency500ms-window"]
-}
-
-module "slo-uptime-latency500ms-window" {
-  source = "../../../modules/slo-native"
-  config = local.slo_config_map["uptime-latency500ms-window"]
-}
-
-module "slo-uptime-pass-window" {
-  source = "../../../modules/slo-native"
-  config = local.slo_config_map["uptime-pass-window"]
-}
