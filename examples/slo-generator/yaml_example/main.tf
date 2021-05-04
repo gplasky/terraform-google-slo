@@ -72,39 +72,13 @@ module "slo-pipeline" {
   dataset_create = false
 }
 
-module "slo-generator-bq-latency" {
+module "slo-hipstershop-grpc-availability" {
   source                     = "../../../modules/slo"
   schedule                   = var.schedule
   region                     = var.region
   project_id                 = var.project_id
   labels                     = var.labels
-  config                     = local.slo_config_map["generator-bq-latency"]
-  error_budget_policy        = local.error_budget_policy
-  config_bucket              = google_storage_bucket.slos.name
-  use_custom_service_account = true
-  service_account_email      = google_service_account.slo-generator.email
-}
-
-module "slo-generator-gcf-errors" {
-  source                     = "../../../modules/slo"
-  schedule                   = var.schedule
-  region                     = var.region
-  project_id                 = var.project_id
-  labels                     = var.labels
-  config                     = local.slo_config_map["generator-gcf-errors"]
-  error_budget_policy        = local.error_budget_policy
-  config_bucket              = google_storage_bucket.slos.name
-  use_custom_service_account = true
-  service_account_email      = google_service_account.slo-generator.email
-}
-
-module "slo-generator-pubsub-ack" {
-  source                     = "../../../modules/slo"
-  schedule                   = var.schedule
-  region                     = var.region
-  project_id                 = var.project_id
-  labels                     = var.labels
-  config                     = local.slo_config_map["generator-pubsub-ack"]
+  config                     = local.slo_config_map["hipstershop-grpc-availability"]
   error_budget_policy        = local.error_budget_policy
   config_bucket              = google_storage_bucket.slos.name
   use_custom_service_account = true

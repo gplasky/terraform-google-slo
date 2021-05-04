@@ -1,0 +1,23 @@
+---
+service_name: hipstershop
+feature_name: grpc
+slo_description:  Availability of Hipstershop as measured by client RPCs
+slo_name:         availability
+slo_target:       0.995
+metadata:
+  env:  prod
+backend:
+  class:          StackdriverServiceMonitoring
+  project_id:     gplasky-canhaz-coffee
+  method:         good_bad_ratio
+  measurement:
+    filter_good:  >
+      project="gplasky-canhaz-coffee"
+      resource.type="global"
+      metric.type="custom.googleapis.com/opencensus/grpc.io/client/completed_rpcs"
+      metric.labels.grpc_client_method = starts_with("hipstershop")
+      metric.labels.grpc_client_status = one_of("OK", "CANCELLED")
+    filter_valid: >
+      project="gplasky-canhaz-coffee"
+      metric.type="custom.googleapis.com/opencensus/grpc.io/client/completed_rpcs"
+      resource.type="global"

@@ -23,14 +23,6 @@ output "slo_pipeline" {
   value       = module.slo-pipeline
 }
 
-output "slo-generator-bq-latency" {
-  value = module.slo-generator-bq-latency
-}
-
-output "slo-generator-gcf-errors" {
-  value = module.slo-generator-gcf-errors
-}
-
-output "slo-generator-pubsub-ack" {
-  value = module.slo-generator-pubsub-ack
+output "slo-hipstershop-grpc-availability" {
+  value = module.slo-hipstershop-grpc-availability
 }
