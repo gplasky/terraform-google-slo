@@ -6,6 +6,8 @@
 
 # Python
 *.pyc
+.venv
+.venv/*
 
 # Emacs save files
 *~

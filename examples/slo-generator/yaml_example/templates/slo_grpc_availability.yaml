@@ -1,17 +1,20 @@
----
-service_name: hipstershop
-feature_name: grpc
-slo_description:  Availability of Hipstershop as measured by client RPCs
-slo_name:         availability
-slo_target:       0.995
+apiVersion: sre.google.com/v2
+kind: ServiceLevelObjective
 metadata:
-  env:  prod
-backend:
-  class:          StackdriverServiceMonitoring
-  project_id:     gplasky-canhaz-coffee
-  method:         good_bad_ratio
-  measurement:
-    filter_good:  >
+  name: hipstershop-grpc-availability
+  labels:
+    service_name: hipstershop
+    feature_name: grpc
+    slo_name: availability
+    metadata:
+      env: prod
+spec:
+  description: Availability of Hipstershop as measured by client RPCs
+  backend: cloud_service_monitoring
+  method: good_bad_ratio
+  exporters: []
+  service_level_indicator:
+    filter_good: >
       project="gplasky-canhaz-coffee"
       resource.type="global"
       metric.type="custom.googleapis.com/opencensus/grpc.io/client/completed_rpcs"
@@ -21,3 +24,4 @@ backend:
       project="gplasky-canhaz-coffee"
       metric.type="custom.googleapis.com/opencensus/grpc.io/client/completed_rpcs"
       resource.type="global"
+  goal: 0.995
