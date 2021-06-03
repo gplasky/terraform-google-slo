@@ -12,20 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ---
-- error_budget_policy_step_name: a.Last 1 hour
-  measurement_window_seconds: 3600
-  alerting_burn_rate_threshold: 9
-  urgent_notification: true
-  overburned_consequence_message: Page to defend the SLO
-  achieved_consequence_message: Last hour on track
-
-- error_budget_policy_step_name: b.Last 12 hours
-  measurement_window_seconds: 43200
-  alerting_burn_rate_threshold: 3
-  urgent_notification: true
-  overburned_consequence_message: Page to defend the SLO
-  achieved_consequence_message: Last 12 hours on track
-
 - error_budget_policy_step_name: c.Last 7 days
   measurement_window_seconds: 604800
   alerting_burn_rate_threshold: 1.5
